@@ -6,7 +6,7 @@
 /*   By: itan <itan@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 22:37:35 by itan              #+#    #+#             */
-/*   Updated: 2022/08/27 01:37:02 by itan             ###   ########.fr       */
+/*   Updated: 2022/08/27 01:41:25 by itan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ bool	ft_is_possible(int **grid, int column, int row, int value)
 	return (true);
 }
 
-ft_solve(int column, int row)
+void	ft_solve(int column, int row)
 {
 	char	**grid;
 	int		nb;
 
 	nb = 0;
-	while (++column < 4)
+	while (column < 4)
 	{
-		while (++row < 4)
+		while (row < 4)
 		{
 			if (grid[row + 1][column + 1] == 0)
 			{
-				while (++nb < 5)
+				while (nb < 5)
 				{
 					if (ft_is_possible(grid, column + 1, row + 1, nb))
 					{
@@ -108,9 +108,13 @@ ft_solve(int column, int row)
 						ft_solve(column, row);
 						grid[row + 1][column + 1] = 0;
 					}
+					nb++;
 				}
+				return ;
 			}
+			row++;
 		}
+		column++;
 	}
 }
 
