@@ -2,7 +2,7 @@
 #include "vantage_checker.h"
 #include <stdbool.h>
 
-void	ft_check_and_set(int **grid, int col, int row, int nb);
+bool	ft_check_and_set(int **grid, int col, int row, int nb);
 
 // check if the value is possible
 // first 4 if statement is to check the edges, if value
@@ -27,15 +27,13 @@ bool	ft_is_possible(int **grid, int col, int row, int value)
 	while (++i < 5)
 		if (grid[i][col] == value && i != row)
 			return (false);
-	if (!ft_vantage_checker(grid, col, row, value))
-		return (false);
 	return (true);
 }
 
 // ft_solve accepts 3 arguments, nothing more
 //nothing less. data type must correspond to the var to be referenced
 
-void	ft_solve(int **grid)
+bool	ft_solve(int **grid)
 {
 	int	nb;
 	int	col;
@@ -51,19 +49,25 @@ void	ft_solve(int **grid)
 			{
 				nb = 0;
 				while (++nb < 5)
-					ft_check_and_set(grid, col, row, nb);
-				return ;
+					if (ft_check_and_set(grid, col, row, nb))
+						return (true);
+				return (false);
 			}
 		}
 	}
+	return (false);
 }
 
-void	ft_check_and_set(int **grid, int col, int row, int nb)
+bool	ft_check_and_set(int **grid, int col, int row, int nb)
 {
 	if (ft_is_possible(grid, col + 1, row + 1, nb))
 	{
 		grid[row + 1][col + 1] = nb;
-		ft_solve(grid);
+		if (ft_vantage_checker(grid, col + 1, row + 1))
+			return (true);
+		if (ft_solve(grid))
+			return (true);
 		grid[row + 1][col + 1] = 0;
 	}
+	return (false);
 }

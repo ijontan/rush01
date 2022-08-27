@@ -1,13 +1,11 @@
+#include "brute_force.h"
 #include "config.h"
 #include "input_validation.h"
-#include "brute_force.h"
-#include "setup.h"
 #include "printer.h"
+#include "setup.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
 
 int	main(int argc, char *argv[])
 {
@@ -17,13 +15,13 @@ int	main(int argc, char *argv[])
 		return (0);
 
 	// generate the grid
-	grid =  generate_grid(ft_input_parse(argv[1]));
+	grid = generate_grid(ft_input_parse(argv[1]));
 
 	// solve for spots that are definite first (optimization)
 
 	// brute forcing
-	ft_solve(grid, 0, 0);
-	
+	ft_solve(grid);
+
 	// check if the combination is possible
 
 	//printing

@@ -1,23 +1,30 @@
+#include "vantage_checker.h"
 #include <stdbool.h>
 
-bool	ft_vantage_checker(int **grid, int col, int row, int nb)
+bool	ft_vantage_checker(int **grid, int row, int col)
 {
-	if (col == 4)
-		if (!ft_vantage_checker_top(grid, col, nb))
+	if (!(row == 4 && col == 4))
+		return (false);
+	col = 0;
+	while (++col < 4 + 1)
+	{
+		if (!ft_vantage_checker_top(grid, col))
 			return (false);
-	if (col == 4)
-		if (!ft_vantage_checker_bottom(grid, col, nb))
+		if (!ft_vantage_checker_bottom(grid, col))
 			return (false);
-	if (row == 4)
-		if (!ft_vantage_checker_left(grid, row, nb))
+	}
+	row = 0;
+	while (++col < 4 + 1)
+	{
+		if (!ft_vantage_checker_left(grid, row))
 			return (false);
-	if (row == 4)
-		if (!ft_vantage_checker_right(grid, row, nb))
+		if (!ft_vantage_checker_right(grid, row))
 			return (false);
+	}
 	return (true);
 }
 
-bool	ft_vantage_checker_left(int **grid, int row, int nb)
+bool	ft_vantage_checker_left(int **grid, int row)
 {
 	int	num_building;
 	int	i;
@@ -39,7 +46,7 @@ bool	ft_vantage_checker_left(int **grid, int row, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_right(int **grid, int row, int nb)
+bool	ft_vantage_checker_right(int **grid, int row)
 {
 	int	num_building;
 	int	i;
@@ -61,7 +68,7 @@ bool	ft_vantage_checker_right(int **grid, int row, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_top(int **grid, int col, int nb)
+bool	ft_vantage_checker_top(int **grid, int col)
 {
 	int	num_building;
 	int	i;
@@ -83,7 +90,7 @@ bool	ft_vantage_checker_top(int **grid, int col, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_bottom(int **grid, int col, int nb)
+bool	ft_vantage_checker_bottom(int **grid, int col)
 {
 	int	num_building;
 	int	i;

@@ -359,7 +359,6 @@ int	main(int argc, char *argv[])
 	grid = generate_grid(ft_input_parse(argv[1]));
 
 	// ft_print_grid(grid);
-	ft_print_grid(grid);
 
 	// solve for spots that are definite first (optimization)
 
