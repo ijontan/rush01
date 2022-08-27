@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
-//parses the 1 dimensional input argument, and fills it into a 1 dimensional array. 
+//parses the 1 dimensional input argument,
+// and fills it into a 1 dimensional array.
 int	*ft_input_parse(char *str)
 {
 	int	*dest;
@@ -29,15 +30,16 @@ int	*ft_input_parse(char *str)
 int	**generate_grid(int *src)
 {
 	int	**grid;
-	// i to iterate horizontally through *src (AKA clues)
 	int	i;
-	// j to move array to next index (inside 2d grid)
 	int	j;
 
+	// i to iterate horizontally through *src (AKA clues)
+	// j to move array to next index (inside 2d grid)
 	i = -1;
 	// create a int array with 6 slots of size integer
 	grid = (int **)malloc(6 * sizeof(int *));
-	// for each previously created slot, make another int array with 6 slots of size integer inside
+	// for each previously created slot,
+	//make another int array with 6 slots of size integer inside
 	while (++i < 6)
 		grid[i] = (int *)malloc(6 * sizeof(int));
 	i = 0;

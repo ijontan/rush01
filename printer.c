@@ -25,10 +25,8 @@ void	ft_print_grid(int **grid)
 			ft_putchar(grid[row][col]+48);
 			ft_putchar(' ');
 		}
-		while (++col = N)
-		{
-			ft_putchar(grid[row][col]+48);
-		}
+		ft_putchar(grid[row][col]+48);
+
 		ft_putchar('\n');
 	}
 }
