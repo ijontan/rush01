@@ -42,6 +42,8 @@ int	**generate_grid(int *src)
 	//make another int array with 6 slots of size integer inside
 	while (++i < 6)
 		grid[i] = (int *)malloc(6 * sizeof(int));
+	grid[0][0] = 1;
+	grid[0][5] = 1;
 	i = 0;
 	j = 1;
 	while (i < 4)
