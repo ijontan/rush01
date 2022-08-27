@@ -2,18 +2,22 @@
 
 bool	ft_vantage_checker(int **grid, int col, int row, int nb)
 {
-	if (!ft_vantage_checker_top(grid, row, nb))
-		return (false);
-	if (!ft_vantage_checker_bottom(grid, row, nb))
-		return (false);
-	if (!ft_vantage_checker_left(grid, col, nb))
-		return (false);
-	if (!ft_vantage_checker_right(grid, col, nb))
-		return (false);
+	if (col == 4)
+		if (!ft_vantage_checker_top(grid, col, nb))
+			return (false);
+	if (col == 4)
+		if (!ft_vantage_checker_bottom(grid, col, nb))
+			return (false);
+	if (row == 4)
+		if (!ft_vantage_checker_left(grid, row, nb))
+			return (false);
+	if (row == 4)
+		if (!ft_vantage_checker_right(grid, row, nb))
+			return (false);
 	return (true);
 }
 
-bool	ft_vantage_checker_top(int **grid, int row, int nb)
+bool	ft_vantage_checker_left(int **grid, int row, int nb)
 {
 	int	num_building;
 	int	i;
@@ -35,7 +39,7 @@ bool	ft_vantage_checker_top(int **grid, int row, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_bottom(int **grid, int row, int nb)
+bool	ft_vantage_checker_right(int **grid, int row, int nb)
 {
 	int	num_building;
 	int	i;
@@ -57,7 +61,7 @@ bool	ft_vantage_checker_bottom(int **grid, int row, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_left(int **grid, int col, int nb)
+bool	ft_vantage_checker_top(int **grid, int col, int nb)
 {
 	int	num_building;
 	int	i;
@@ -79,7 +83,7 @@ bool	ft_vantage_checker_left(int **grid, int col, int nb)
 	return (true);
 }
 
-bool	ft_vantage_checker_right(int **grid, int col, int nb)
+bool	ft_vantage_checker_bottom(int **grid, int col, int nb)
 {
 	int	num_building;
 	int	i;

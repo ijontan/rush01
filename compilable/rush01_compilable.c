@@ -1,12 +1,124 @@
-#include <unistd.h>
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 #define N 4
+
+bool	ft_vantage_checker_left(int **grid, int row)
+{
+	int	num_building;
+	int	i;
+	int	current_high;
+
+	num_building = 0;
+	current_high = 0;
+	i = -1;
+	while (++i < 4)
+	{
+		if (grid[row][i + 1] > current_high)
+		{
+			num_building++;
+			current_high = grid[row][i + 1];
+		}
+	}
+	if (grid[row][0] != num_building)
+		return (false);
+	return (true);
+}
+
+bool	ft_vantage_checker_right(int **grid, int row)
+{
+	int	num_building;
+	int	i;
+	int	current_high;
+
+	num_building = 0;
+	current_high = 0;
+	i = 4;
+	while (--i >= 0)
+	{
+		if (grid[row][i + 1] > current_high)
+		{
+			num_building++;
+			current_high = grid[row][i + 1];
+		}
+	}
+	if (grid[row][5] != num_building)
+		return (false);
+	return (true);
+}
+
+bool	ft_vantage_checker_top(int **grid, int col)
+{
+	int	num_building;
+	int	i;
+	int	current_high;
+
+	num_building = 0;
+	current_high = 0;
+	i = -1;
+	while (++i < 4)
+	{
+		if (grid[i + 1][col] > current_high)
+		{
+			num_building++;
+			current_high = grid[i + 1][col];
+		}
+	}
+	if (grid[0][col] != num_building)
+		return (false);
+	return (true);
+}
+
+bool	ft_vantage_checker_bottom(int **grid, int col)
+{
+	int	num_building;
+	int	i;
+	int	current_high;
+
+	num_building = 0;
+	current_high = 0;
+	i = 4;
+	while (--i >= 0)
+	{
+		if (grid[i + 1][col] > current_high)
+		{
+			num_building++;
+			current_high = grid[i + 1][col];
+		}
+	}
+	if (grid[5][col] != num_building)
+		return (false);
+	return (true);
+}
+bool	ft_vantage_checker(int **grid, int row, int col)
+{
+	if (!(row == 4 && col == 4))
+		return (false);
+	col = 0;
+	while (++col < N + 1)
+	{
+		if (!ft_vantage_checker_top(grid, col))
+			return (false);
+		if (!ft_vantage_checker_bottom(grid, col))
+			return (false);
+	}
+	row = 0;
+	while (++col < N + 1)
+	{
+		if (!ft_vantage_checker_left(grid, row))
+			return (false);
+		if (!ft_vantage_checker_right(grid, row))
+			return (false);
+	}
+	return (true);
+}
+
 void	ft_print_grid(int **grid);
 // check if the value is possible
-// first 4 if statement is to check the edges, if value + clue next to the edge bigger than 5 it would be false 
-bool ft_is_possible(int **grid,	int col, int row, int value)
+// first 4 if statement is to check the edges, if value
+//	+ clue next to the edge bigger than 5 it would be false
+bool	ft_is_possible(int **grid, int col, int row, int value)
 {
 	int	i;
 
@@ -19,7 +131,7 @@ bool ft_is_possible(int **grid,	int col, int row, int value)
 	if ((row == 4) && (grid[5][col] + value > 5))
 		return (false);
 	i = 0;
-	while (++i< 5)
+	while (++i < 5)
 		if (grid[row][i] == value && i != col)
 			return (false);
 	i = 0;
@@ -29,18 +141,20 @@ bool ft_is_possible(int **grid,	int col, int row, int value)
 	return (true);
 }
 
-// ft_solve accepts 3 arguments, nothing more, nothing less. data type must correspond to the var to be referenced
-void	ft_solve(int **grid)
+// ft_solve accepts 3 arguments, nothing more,
+//	nothing less. data type must correspond to the var to be referenced
+bool	ft_solve(int **grid)
 {
 	int	nb;
-int row=0;
+	int	row;
+	int	col;
 
-	
+	row = 0;
 	while (row < 4)
 	{
-		int col=0;
+		col = 0;
 		while (col < 4)
-		{	
+		{
 			nb = 1;
 			if (grid[row + 1][col + 1] == 0)
 			{
@@ -49,15 +163,15 @@ int row=0;
 					if (ft_is_possible(grid, col + 1, row + 1, nb))
 					{
 						grid[row + 1][col + 1] = nb;
-						ft_solve(grid );
+						if (ft_vantage_checker(grid, col + 1, row + 1))
+							return (true);
+						if (ft_solve(grid))
+							return (true);
 						grid[row + 1][col + 1] = 0;
-						
 					}
-
 					nb++;
 				}
-				
-				return;
+				return (false);
 			}
 			col++;
 		}
@@ -85,15 +199,16 @@ this function also checks the total length of the arguments passed.
 */
 bool	check_correct_value(char *src)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (src[i])
 	{
 		// checks if the even arguments are spaces or not, only spaces allowed
 		// as argument delimiters
 		if (i % 2 == 1 && src[i] != 32)
 			return (false);
-		// checks if the odd arguments are valide character numbers, only valid 
+		// checks if the odd arguments are valide character numbers, only valid
 		// character numbers are allowed
 		if (i % 2 == 0 && (src[i] < 49 || src[i] > 52))
 			return (false);
@@ -106,7 +221,8 @@ bool	check_correct_value(char *src)
 	return (false);
 }
 
-//parses the 1 dimensional input argument, and fills it into a 1 dimensional array. 
+//parses the 1 dimensional input argument,
+//and fills it into a 1 dimensional array.
 int	*ft_input_parse(char *str)
 {
 	int	*dest;
@@ -135,15 +251,16 @@ int	*ft_input_parse(char *str)
 int	**generate_grid(int *src)
 {
 	int	**grid;
-	// i to iterate horizontally through *src (AKA clues)
 	int	i;
-	// j to move array to next index (inside 2d grid)
 	int	j;
 
+	// i to iterate horizontally through *src (AKA clues)
+	// j to move array to next index (inside 2d grid)
 	i = -1;
 	// create a int array with 6 slots of size integer
-	grid = (int **)malloc(6 *sizeof(int *));
-	// for each previously created slot, make another int array with 6 slots of size integer inside
+	grid = (int **)malloc(6 * sizeof(int *));
+	// for each previously created slot,
+	//make another int array with 6 slots of size integer inside
 	while (++i < 6)
 	{
 		grid[i] = (int *)malloc(6 * sizeof(int));
@@ -154,10 +271,6 @@ int	**generate_grid(int *src)
 			j++;
 		}
 	}
-
-
-
-	
 	i = 0;
 	j = 1;
 	while (i < 4)
@@ -178,22 +291,23 @@ int	**generate_grid(int *src)
 	return (grid);
 }
 
-void solve_known_ans(int **grid)
+void	solve_known_ans(int **grid)
 {
-    int i;
-    int j;
-    i= 0;
-    while (i <= N)
-    {
-        if (grid[0][i] == 4)
-        {
-            j = 0;
-            while (++j <= N)
-            {
-                grid[j][i] = j;
-            }
-        }
-    }
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= N)
+	{
+		if (grid[0][i] == 4)
+		{
+			j = 0;
+			while (++j <= N)
+			{
+				grid[j][i] = j;
+			}
+		}
+	}
 }
 
 void	ft_putchar(char c)
@@ -203,26 +317,28 @@ void	ft_putchar(char c)
 
 void	ft_putstr(char *str)
 {
-	int i = -1;
+	int	i;
+
+	i = -1;
 	while (str[++i])
 		ft_putchar(str[i]);
 }
 
 void	ft_print_grid(int **grid)
 {
-	int row = 0;
+	int	row;
+	int	col;
 
+	row = 0;
 	while (++row <= N)
 	{
-		int col = 0;
+		col = 0;
 		while (++col < N)
 		{
 			ft_putchar(grid[row][col] + '0');
 			ft_putchar(' ');
 		}
-
-			ft_putchar(grid[row][col] + '0');
-	
+		ft_putchar(grid[row][col] + '0');
 		ft_putchar('\n');
 	}
 }
@@ -249,7 +365,7 @@ int	main(int argc, char *argv[])
 
 	// brute forcing
 	ft_solve(grid);
-	
+
 	// check if the combination is possible
 
 	//printing
