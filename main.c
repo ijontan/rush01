@@ -6,7 +6,7 @@
 /*   By: itan <itan@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 22:37:35 by itan              #+#    #+#             */
-/*   Updated: 2022/08/27 01:41:25 by itan             ###   ########.fr       */
+/*   Updated: 2022/08/27 09:47:45 by itan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,13 @@ bool	ft_is_possible(int **grid, int column, int row, int value)
 {
 	int	i;
 
-	if (grid[row][0] + value > 5)
+	if (row == 1 && grid[row][0] + value > 5)
 		return (false);
-	if (grid[0][column] + value > 5)
+	if (column == 1 && grid[0][column] + value > 5)
+		return (false);
+	if (row == 4 && grid[row][5] + value > 5)
+		return (false);
+	if (column == 4 && grid[5][column] + value > 5)
 		return (false);
 	i = 0;
 	while (grid[row][++i] < 5)
@@ -88,10 +92,9 @@ bool	ft_is_possible(int **grid, int column, int row, int value)
 	return (true);
 }
 
-void	ft_solve(int column, int row)
+void	ft_solve(char **grid, int column, int row)
 {
-	char	**grid;
-	int		nb;
+	int	nb;
 
 	nb = 0;
 	while (column < 4)
@@ -105,7 +108,7 @@ void	ft_solve(int column, int row)
 					if (ft_is_possible(grid, column + 1, row + 1, nb))
 					{
 						grid[row + 1][column + 1] = nb;
-						ft_solve(column, row);
+						ft_solve(grid, column, row);
 						grid[row + 1][column + 1] = 0;
 					}
 					nb++;
