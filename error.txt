@@ -1,0 +1,74 @@
+brute_force.c:43:25: error: incompatible pointer types passing 'char **' to parameter of type 'int **' [-Werror,-Wincompatible-pointer-types]
+                                        if (ft_is_possible(grid, col + 1, row + 1, nb))
+                                                           ^~~~
+brute_force.c:6:27: note: passing argument to parameter 'grid' here
+bool ft_is_possible(int **grid, int col, int row, int value)
+                          ^
+brute_force.c:59:30: error: unused parameter 'col' [-Werror,-Wunused-parameter]
+bool    ft_is_0(int **grid, int col, int row)
+                                ^
+2 errors generated.
+main.c:16:36: error: implicit declaration of function 'check_correct_value' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+        if (!check_correct_argc(argc) || !check_correct_value(argv[1]))
+                                          ^
+main.c:20:24: error: incompatible pointer types passing 'const char *' to parameter of type 'int *' [-Werror,-Wincompatible-pointer-types]
+        grid =  generate_grid(argv[1]);
+                              ^~~~~~~
+./setup.h:5:26: note: passing argument to parameter 'src' here
+int **generate_grid(int *src);
+                         ^
+main.c:20:7: error: incompatible pointer types assigning to 'char **' from 'int **' [-Werror,-Wincompatible-pointer-types]
+        grid =  generate_grid(argv[1]);
+             ^  ~~~~~~~~~~~~~~~~~~~~~~
+main.c:30:16: error: incompatible pointer types passing 'char **' to parameter of type 'int **' [-Werror,-Wincompatible-pointer-types]
+        ft_print_grid(grid);
+                      ^~~~
+./printer.h:7:29: note: passing argument to parameter 'grid' here
+void    ft_print_grid(int **grid);
+                            ^
+4 errors generated.
+optimise.c:3:9: error: 'config.h' file not found with <angled> include; use "quotes" instead
+#include<config.h>
+        ^~~~~~~~~~
+        "config.h"
+1 error generated.
+printer.c:1:10: error: 'config.h' file not found with <angled> include; use "quotes" instead
+#include <config.h>
+         ^~~~~~~~~~
+         "config.h"
+printer.c:5:2: error: implicit declaration of function 'ft_putstr' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+        ft_putstr("ERROR\n");
+        ^
+printer.c:3:24: error: unused parameter 'c' [-Werror,-Wunused-parameter]
+void    ft_errormsg(char *c)
+                          ^
+printer.c:10:2: error: implicit declaration of function 'write' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+        write(1, &c, 1);
+        ^
+printer.c:13:6: error: conflicting types for 'ft_putstr'
+void    ft_putstr(char *str)
+        ^
+printer.c:5:2: note: previous implicit declaration is here
+        ft_putstr("ERROR\n");
+        ^
+printer.c:31:15: error: incompatible pointer to integer conversion passing 'char [2]' to parameter of type 'char' [-Werror,-Wint-conversion]
+                        ft_putchar(" ");
+                                   ^~~
+printer.c:8:22: note: passing argument to parameter 'c' here
+void    ft_putchar(char c)
+                        ^
+printer.c:33:14: error: incompatible pointer to integer conversion passing 'char [2]' to parameter of type 'char' [-Werror,-Wint-conversion]
+                ft_putchar("\n");
+                           ^~~~
+printer.c:8:22: note: passing argument to parameter 'c' here
+void    ft_putchar(char c)
+                        ^
+printer.c:23:6: error: unused variable 'col' [-Werror,-Wunused-variable]
+        int col = 0;
+            ^
+8 errors generated.
+setup.c:9:16: error: implicitly declaring library function 'malloc' with type 'void *(unsigned long)' [-Werror,-Wimplicit-function-declaration]
+        dest = (int *)malloc(sizeof(int) * 16);
+                      ^
+setup.c:9:16: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+1 error generated.
