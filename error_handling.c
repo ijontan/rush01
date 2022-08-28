@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itan <itan@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/28 16:30:41 by yraji             #+#    #+#             */
+/*   Updated: 2022/08/28 16:50:47 by itan             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 
 //check if any int slot in nxn is null/0
-bool	ft_is_0(int **grid, int n)
+bool	ft_is_zero(int **grid, int n)
 {
 	int	i;
 	int	j;

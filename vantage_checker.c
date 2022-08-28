@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vantage_checker.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itan <itan@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/28 17:10:22 by itan              #+#    #+#             */
+/*   Updated: 2022/08/28 17:10:34 by itan             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_size.h"
 #include "vantage_checker.h"
 #include <stdbool.h>
@@ -96,9 +108,9 @@ bool	ft_vantage_checker_top(int **grid, int col, int n)
 
 bool	ft_vantage_checker_bottom(int **grid, int col, int n)
 {
-	int num_building;
-	int i;
-	int current_high;
+	int	num_building;
+	int	i;
+	int	current_high;
 
 	num_building = 0;
 	current_high = 0;
