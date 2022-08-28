@@ -3,6 +3,6 @@
 # define BRUTE_FORCE_H
 
 bool	ft_is_possible(int **grid, int col, int row, int value);
-bool	ft_solve(int **grid);
+bool	ft_solve(int **grid, int n);
 
 #endif

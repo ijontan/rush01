@@ -1,0 +1,10 @@
+#ifndef OPTIMISE_H
+# define OPTIMISE_H
+
+void	solve_known_ans(int **grid);
+void	solve_top_row(int **grid, int n);
+void	solve_bottom_row(int **grid, int n);
+void	solve_left_col(int **grid, int n);
+void	solve_right_col(int **grid, int n);
+
+#endif

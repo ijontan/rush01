@@ -22,23 +22,24 @@ this function also checks the total length of the arguments passed.
 */
 bool	check_correct_value(char *src)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (src[i])
 	{
-		// checks if the even arguments are spaces or not, only spaces allowed
+		// checks if the odd index are spaces or not, only spaces allowed
 		// as argument delimiters
 		if (i % 2 == 1 && src[i] != 32)
 			return (false);
-		// checks if the odd arguments are valide character numbers, only valid 
+		// checks if the even index are valid character numbers, only valid
 		// character numbers are allowed
-		if (i % 2 == 0 && (src[i] < 49 || src[i] > 52))
+		if (i % 2 == 0 && (src[i] < 49 || src[i] > 57))
 			return (false);
 		i++;
 	}
-	// checks if the total count of arguments (spaces and numbers) is not equal
-	// to 32, (16(numbers) + 16(spaces) = 32)
-	if (i == 31)
+	// checks if the total count of arguments (spaces and numbers) is divisible by 8,
+	// reject user input if not divisible by 8
+	if ((i + 1) % 8 == 0)
 		return (true);
 	return (false);
 }

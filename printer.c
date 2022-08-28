@@ -1,4 +1,3 @@
-#include <get_size.h>
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -15,28 +14,21 @@ void	ft_putstr(char *str)
 		ft_putchar(str[i]);
 }
 
-void	ft_print_grid(int **grid)
+void	ft_print_grid(int **grid, int n)
 {
-	int	n;
 	int	row;
 	int	col;
 
-	n = get_size(grid);
-	row = 0;
+	row = -1;
 	while (++row <= n)
 	{
-		col = 0;
-		while (++col < n)
+		col = -1;
+		while (++col < n - 1)
 		{
-			ft_putchar(grid[row][col] + 48);
+			ft_putchar(grid[row][col] + '0');
 			ft_putchar(' ');
 		}
-		ft_putchar(grid[row][col] + 48);
+		ft_putchar(grid[row][col] + '0');
 		ft_putchar('\n');
 	}
-}
-
-void	ft_errormsg(void)
-{
-	ft_putstr("ERROR\n");
 }

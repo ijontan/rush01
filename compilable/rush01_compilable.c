@@ -451,8 +451,6 @@ int	main(int argc, char *argv[])
 	grid = generate_grid(ft_input_parse(argv[1]));
 	//get size of grid
 	n = get_size(grid);
-	// ft_print_grid(grid);
-
 	// solve for spots that are definite first (optimization)
 	solve_known_ans(grid);
 	// brute forcing

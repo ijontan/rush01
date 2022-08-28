@@ -1,5 +1,8 @@
-#include <get_size.h>
+#include "get_size.h"
+#include "optimise.h"
 
+// solving all the boxes with only one possible answer with the clues
+// eg. solve_top_row would be solving the boxes with the clues on the top row
 void	solve_known_ans(int **grid)
 {
 	int	n;
@@ -7,8 +10,8 @@ void	solve_known_ans(int **grid)
 	n = get_size(grid);
 	solve_top_row(grid, n);
 	solve_bottom_row(grid, n);
-	solve_left_row(grid, n);
-	solve_right_row(grid, n);
+	solve_left_col(grid, n);
+	solve_right_col(grid, n);
 }
 
 void	solve_top_row(int **grid, int n)
@@ -51,7 +54,7 @@ void	solve_bottom_row(int **grid, int n)
 	}
 }
 
-void	solve_left_row(int **grid, int n)
+void	solve_left_col(int **grid, int n)
 {
 	int	col;
 	int	row;
@@ -72,7 +75,7 @@ void	solve_left_row(int **grid, int n)
 	}
 }
 
-void	solve_right_row(int **grid, int n)
+void	solve_right_col(int **grid, int n)
 {
 	int	col;
 	int	row;

@@ -7,16 +7,20 @@ int	*ft_input_parse(char *str)
 	int	*dest;
 	int	i;
 	int	j;
+	int	len;
 
+	len = 0;
+	while (str[len])
+		len++;
 	// allocate memory for the argument array
-	dest = (int *)malloc(sizeof(int) * 16);
+	dest = (int *)malloc(sizeof(int) * (len + 1) / 2 + sizeof(int));
 	i = 0;
 	j = 0;
 	while (str[i])
 	{
-		if (str[i] >= 49 && str[i] <= 52)
+		if (str[i] >= 49 && str[i] <= 57)
 		{
-			// if the value is within 1 ~ 4, convert char back to int
+			// if the value is within 1 ~ 9, convert char back to int
 			dest[j] = str[i] - 48;
 			j++;
 		}
@@ -32,34 +36,42 @@ int	**generate_grid(int *src)
 	int	**grid;
 	int	i;
 	int	j;
+	int	len;
 
+	len = 0;
+	while (src[len] > 0)
+		len++;
 	// i to iterate horizontally through *src (AKA clues)
 	// j to move array to next index (inside 2d grid)
 	i = -1;
 	// create a int array with 6 slots of size integer
-	grid = (int **)malloc(6 * sizeof(int *));
+	grid = (int **)malloc((len / 4 + 3) * sizeof(int *));
 	// for each previously created slot,
 	//make another int array with 6 slots of size integer inside
-	while (++i < 6)
-		grid[i] = (int *)malloc(6 * sizeof(int));
-	grid[0][0] = 1;
-	grid[0][5] = 1;
+	while (++i < len / 4 + 3)
+	{
+		grid[i] = (int *)malloc((len / 4 + 3) * sizeof(int));
+		j = -1;
+		while (++j < len / 4 + 3)
+			grid[i][j] = 0;
+	}
 	i = 0;
 	j = 1;
-	while (i < 4)
+	while (i < len / 4)
 		// access first row, second col then assign clue to the slot
 		grid[0][j++] = src[i++];
 	j = 1;
-	while (i < 8)
+	while (i < len / 4 * 2)
 		// access last row, second col
-		grid[5][j++] = src[i++];
+		grid[len / 4 + 1][j++] = src[i++];
 	j = 1;
-	while (i < 12)
+	while (i < len / 4 * 3)
 		// access first col, second row
 		grid[j++][0] = src[i++];
 	j = 1;
-	while (i < 16)
+	while (i < len)
 		// access last col, second row
-		grid[j++][5] = src[i++];
+		grid[j++][len / 4 + 1] = src[i++];
+	free(src);
 	return (grid);
 }

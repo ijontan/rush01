@@ -1,42 +1,37 @@
 #include <stdbool.h>
 
-//check if any int slot in 4x4 is null/0
-bool	ft_is_0(int **grid, int col, int row)
+//check if any int slot in nxn is null/0
+bool	ft_is_0(int **grid, int n)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (row > 0 && row < 5)
+	while (++i < n + 1)
 	{
-		if (grid[row][i++] == 0)
-			return (true);
-		i = 0;
-		while (col > 0 && col < 5)
-		{
-    		if (grid[i++][col] == 0)
+		j = 0;
+		while (++j < n + 1)
+			if (grid[i][j] == 0)
 				return (true);
-        	col++;
-    	}
-		row++;
 	}
 	return (false);
 }
 
 //{
 //	row = 1;
-//	col = 1;	
+//	col = 1;
 //
 //        while ((row > 0 && row < 5) && (col > 0 && col < 5))
 //        {
-//            if (grid[col][row++] == 0)    
+//            if (grid[col][row++] == 0)
 //                return(true);
 //            col++;
 //            row = 1;
 //        }
 //}
 
-
-// //check if combination where clue 4 is not adjacent to 1, or if clue 1 is not adjacent to 4 (or any invalid combinations)
+// //check if combination where clue 4 is not adjacent to 1,
+// or if clue 1 is not adjacent to 4 (or any invalid combinations)
 // bool	ft_combination(int **grid)
 // {
 // 	//if (grid[0][1] == 4)
