@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	// check if the combination is possible
 
 	//printing
-	ft_print_grid(grid);
+	ft_print_grid(grid, n);
 
 	//free memory
 	i = -1;

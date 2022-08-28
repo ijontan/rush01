@@ -19,11 +19,11 @@ void	ft_print_grid(int **grid, int n)
 	int	row;
 	int	col;
 
-	row = -1;
+	row = 0;
 	while (++row <= n)
 	{
-		col = -1;
-		while (++col < n - 1)
+		col = 0;
+		while (++col < n)
 		{
 			ft_putchar(grid[row][col] + '0');
 			ft_putchar(' ');

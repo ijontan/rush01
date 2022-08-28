@@ -38,10 +38,10 @@ int	get_size(int **grid)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (grid[0][i] != 0)
 		i++;
-	return (i - 2);
+	return (i - 1);
 }
 bool	ft_vantage_checker_left(int **grid, int row, int n)
 {
@@ -321,8 +321,6 @@ int	**generate_grid(int *src)
 		while (++j < len / 4 + 3)
 			grid[i][j] = 0;
 	}
-	grid[0][0] = 1;
-	grid[0][len / 4 + 1] = 1;
 	i = 0;
 	j = 1;
 	while (i < len / 4)

@@ -51,7 +51,7 @@ bool	ft_solve(int **grid, int n)
 			if (grid[row + 1][col + 1] == 0)
 			{
 				nb = 0;
-				while (++nb < 5)
+				while (++nb < n + 1)
 					if (ft_check_and_set(grid, col, row, nb))
 						return (true);
 				return (false);

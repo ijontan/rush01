@@ -3,6 +3,6 @@
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
-void	ft_print_grid(int **grid);
+void	ft_print_grid(int **grid, int n);
 
 #endif
