@@ -15,20 +15,21 @@ int	main(int argc, char *argv[])
 	int i;
 	// check if input format is correct
 	if (!check_correct_argc(argc) || !check_correct_value(argv[1]))
+	{
+		ft_putstr("wrong input");
 		return (0);
-
-	// generate the grid
+	}
 	grid = generate_grid(ft_input_parse(argv[1]));
-	// get size of grid
 	n = get_size(grid);
 	// solve for spots that are definite first (optimization)
 	solve_known_ans(grid);
 	// brute forcing
 	ft_solve(grid, n);
-
-	// check if the combination is possible
-
-	//printing
+	if (ft_is_zero(grid, n))
+	{
+		ft_putstr("error");
+		return (0);
+	}
 	ft_print_grid(grid, n);
 
 	//free memory
